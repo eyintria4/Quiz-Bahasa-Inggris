@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>index</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff0f7;--card:#fff;--ink:#4a1233;--mute:#8b5a76;--p:#e0187f;--p2:#ff7ab8;--soft:#ffd6ea;--line:#f3b7d5;--ok:#17a870;--no:#e5484d;--dbt:#f5a524;--rail:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#2a0d1e;--card:#3b1329;--ink:#ffe6f2;--mute:#d9a3c0;--soft:#57203c;--line:#7a3358;--rail:#3b1329}}
+*{box-sizing:border-box}
+html,body{height:auto;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;line-height:1.55;min-height:100vh;display:flex;flex-direction:column;
+background-image:radial-gradient(circle at 10% 0,var(--soft) 0,transparent 35%),radial-gradient(circle at 100% 100%,var(--soft) 0,transparent 35%)}
+h1,h2,h3,.f{font-family:Fredoka,Nunito,sans-serif}
+main{flex:1;width:100%;max-width:980px;margin:0 auto;padding:20px 16px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 8px 0 var(--soft)}
+.hide{display:none!important}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--p);color:#fff;border:0;border-radius:14px;padding:12px 20px;font-weight:700;box-shadow:0 4px 0 #a80f60}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #a80f60}
+.btn.alt{background:var(--card);color:var(--p);border:2px solid var(--p);box-shadow:0 4px 0 var(--line)}
+.btn.dbt{background:var(--dbt);box-shadow:0 4px 0 #b67a10;color:#3a2600}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--p2);outline-offset:2px}
+/* start */
+.hero{text-align:center;margin-bottom:18px}
+.hero .em{font-size:54px}
+.hero h1{font-size:clamp(28px,6vw,44px);margin:4px 0;color:var(--p);line-height:1.1}
+.hero p{margin:0;color:var(--mute)}
+form,.fld{display:grid;gap:14px;max-width:520px;margin:0 auto}
+label{display:grid;gap:4px;font-weight:700;font-size:14px}
+input{font:inherit;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+input:focus{border-color:var(--p);outline:none}
+.info{font-size:14px;color:var(--mute);text-align:center;margin-top:14px}
+.err{color:var(--no);font-weight:700;text-align:center;min-height:20px;margin:0}
+/* quiz */
+.top{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.who{font-weight:700;font-size:14px}
+.who small{display:block;color:var(--mute);font-weight:600}
+.timer{background:var(--p);color:#fff;border-radius:999px;padding:8px 18px;font-weight:700;font-size:20px;font-family:Fredoka}
+.timer.low{background:var(--no);animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.6}}
+@media (prefers-reduced-motion:reduce){.timer.low{animation:none}}
+.grid2{display:grid;grid-template-columns:1fr 280px;gap:16px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.bar{height:10px;background:var(--soft);border-radius:9px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p2),var(--p));transition:width .3s}
+.qn{color:var(--p);font-weight:700;font-family:Fredoka}
+.qt{font-size:clamp(18px,3vw,22px);font-weight:700;margin:6px 0 16px}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px;font-weight:600}
+.opt b{flex:none;width:32px;height:32px;border-radius:50%;background:var(--soft);display:grid;place-items:center;color:var(--p);font-family:Fredoka}
+.opt:hover{border-color:var(--p2)}
+.opt.sel{background:var(--p);border-color:var(--p);color:#fff}
+.opt.sel b{background:#fff}
+.acts{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:12px}
+.acts .btn{flex:1;min-width:100px}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.nb{aspect-ratio:1;border-radius:12px;border:2px solid var(--line);background:var(--rail);color:var(--ink);font-weight:700;font-family:Fredoka}
+.nb.a{background:var(--p);border-color:var(--p);color:#fff}
+.nb.d{background:var(--dbt);border-color:var(--dbt);color:#3a2600}
+.nb.c{box-shadow:0 0 0 3px var(--card),0 0 0 6px var(--ink)}
+.lg{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;margin-top:14px;color:var(--mute)}
+.lg i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:2px solid var(--line)}
+.ov{position:fixed;inset:0;background:rgba(74,18,51,.55);display:grid;place-items:center;padding:16px;z-index:20}
+.ov .card{max-width:400px;text-align:center}
+/* result */
+.score{width:150px;height:150px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;background:conic-gradient(var(--p) calc(var(--v)*1%),var(--soft) 0)}
+.score span{width:118px;height:118px;border-radius:50%;background:var(--card);display:grid;place-items:center;font:700 44px Fredoka;color:var(--p)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stats div{background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.stats b{display:block;font:700 24px Fredoka}
+table{width:100%;border-collapse:collapse}
+td,th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
+th{color:var(--mute);font-weight:700;width:38%}
+.rv{border-left:6px solid var(--no);background:var(--bg);border-radius:12px;padding:12px 14px;margin:12px 0}
+.rv.ok{border-color:var(--ok)}
+.rv p{margin:4px 0}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:#fff;border-radius:99px;padding:1px 10px;background:var(--no)}
+.rv.ok .tag{background:var(--ok)}
+.expl{background:var(--card);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:14px}
+.rb{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:16px 0}
+/* certificate (always light for print) */
+#cert{background:#fffafc;color:#4a1233;border:6px double #e0187f;border-radius:18px;padding:28px 22px;text-align:center;margin-top:10px}
+#cert h2{font-size:clamp(26px,5vw,40px);color:#e0187f;margin:0}
+#cert .nm{font:700 clamp(24px,5vw,36px) Fredoka;border-bottom:3px dotted #ff7ab8;display:inline-block;padding:0 18px;margin:8px 0;max-width:100%;overflow-wrap:anywhere}
+#cert table{max-width:520px;margin:14px auto;text-align:left}
+#cert th{color:#8b5a76}#cert td,#cert th{border-color:#f3b7d5}
+.sign{margin-top:18px;font-size:14px}
+.sign b{display:block;margin-top:34px;border-top:2px solid #4a1233;display:inline-block;padding-top:2px}
+footer{text-align:center;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));color:var(--mute);font-size:14px;border-top:2px dashed var(--line)}
+footer b{color:var(--p)}
+@media print{
+ @page{size:A4 portrait;margin:12mm}
+ body{background:#fff!important}
+ body *{visibility:hidden}
+ #cert,#cert *{visibility:visible}
+ #cert{position:absolute;left:0;top:0;width:100%;margin:0}
+}
+</style>
+</head>
+<body>
+<main>
+<!-- START -->
+<section id="s-start">
+ <div class="hero"><div class="em">🎀</div><h1>Quiz</h1><p>Classroom Objects, Everyday Objects &amp; Possessive Adjectives</p></div>
+ <div class="card">
+  <div class="fld" id="f">
+   <label>Nama Siswa<input id="nama" maxlength="60" autocomplete="off" placeholder="Contoh: Siti Aisyah"></label>
+   <label>Kelas<input id="kelas" maxlength="20" autocomplete="off" placeholder="Contoh: VII A"></label>
+   <label>Peserta Didik (No. Peserta / NISN)<input id="pd" maxlength="30" autocomplete="off" placeholder="Nomor peserta didik"></label>
+   <label>Asal Sekolah<input id="sekolah" maxlength="80" autocomplete="off" placeholder="Nama sekolah"></label>
+   <p class="err" id="err"></p>
+   <button class="btn" id="mulai" type="button">Mulai Quiz</button>
+  </div>
+  <p class="info">20 soal pilihan ganda • Waktu 20 menit • Nilai tampil di akhir beserta pembahasan</p>
+ </div>
+</section>
+
+<!-- QUIZ -->
+<section id="s-quiz" class="hide">
+ <div class="top">
+  <div class="who" id="who"></div>
+  <div class="timer" id="timer">20:00</div>
+  <button class="btn alt" id="fin" type="button">Selesai</button>
+ </div>
+ <div class="grid2">
+  <div class="card">
+   <div class="bar"><i id="bar"></i></div>
+   <div class="qn" id="qn"></div>
+   <div class="qt" id="qt"></div>
+   <div id="opts"></div>
+   <div class="acts">
+    <button class="btn alt" id="prev" type="button">‹ Sebelumnya</button>
+    <button class="btn dbt" id="dbt" type="button">Ragu-ragu</button>
+    <button class="btn" id="next" type="button">Selanjutnya ›</button>
+   </div>
+  </div>
+  <div class="card">
+   <h3 style="margin:0 0 10px">Navigasi Soal</h3>
+   <div class="nav" id="nav"></div>
+   <div class="lg"><span><i style="background:var(--p);border-color:var(--p)"></i>Dijawab</span><span><i style="background:var(--dbt);border-color:var(--dbt)"></i>Ragu-ragu</span><span><i style="background:var(--rail)"></i>Belum dijawab</span></div>
+  </div>
+ </div>
+</section>
+
+<!-- RESULT -->
+<section id="s-res" class="hide">
+ <div class="hero"><h1>Hasil Quiz 🎉</h1></div>
+ <div class="card" style="text-align:center">
+  <div class="score" id="sc"><span id="scv"></span></div>
+  <h2 id="pred" style="margin:0;color:var(--p)"></h2>
+  <div class="stats"><div><b id="sb" style="color:var(--ok)"></b>Benar</div><div><b id="ss" style="color:var(--no)"></b>Salah</div><div><b id="sk"></b>Kosong</div></div>
+  <table id="idt"></table>
+  <div class="rb">
+   <button class="btn" id="showc" type="button">🏅 Lihat Sertifikat</button>
+   <button class="btn alt" id="ulang" type="button">Ulangi Quiz</button>
+  </div>
+ </div>
+ <div id="certwrap" class="hide">
+  <div class="rb"><button class="btn" id="print" type="button">🖨️ Cetak / Simpan PDF</button></div>
+  <div id="cert"></div>
+ </div>
+ <h2 style="margin:24px 0 0;color:var(--p)">Pembahasan Soal</h2>
+ <div id="rev"></div>
+</section>
+</main>
+<footer>Dikembangkan oleh <b>Eyin Tria Agustina, S.Pd</b></footer>
+<div class="ov hide" id="ov"><div class="card"><h3 style="margin-top:0" id="ovt"></h3><p id="ovp"></p><div class="rb" style="margin-bottom:0"><button class="btn alt" id="no" type="button">Kembali</button><button class="btn" id="yes" type="button">Ya, selesai</button></div></div></div>
+
+<script>
+const Q=[
+["What is the English word for “papan tulis”?",["Whiteboard","Marker","Eraser","Ruler"],0,"Whiteboard (dibaca waitbord) berarti papan tulis."],
+["“Marker” artinya …",["Penghapus","Penggaris","Spidol","Kotak pensil"],2,"Marker (dibaca marker) berarti spidol."],
+["“Penghapus” dalam bahasa Inggris adalah …",["Ruler","Eraser","Marker","Chair"],1,"Eraser berarti penghapus; ruler = penggaris."],
+["“Ruler” artinya …",["Penggaris","Buku cetak","Tas","Kursi"],0,"Ruler berarti penggaris."],
+["“Pencil case” artinya …",["Pensil warna","Tas sekolah","Kotak pensil","Penghapus"],2,"Pencil case = kotak pensil."],
+["Telepon genggam dalam bahasa Inggris disebut …",["Watch","Handphone","Wallet","Key"],1,"Handphone (dibaca henphon) berarti telepon genggam."],
+["“Wallet” artinya …",["Dompet","Kunci","Botol","Payung"],0,"Wallet (dibaca wollet) berarti dompet."],
+["“Umbrella” artinya …",["Kacamata","Jam tangan","Payung","Botol"],2,"Umbrella (dibaca ambrela) berarti payung."],
+["Benda yang dipakai untuk melihat lebih jelas adalah …",["Watch","Bottle","Glasses","Key"],2,"Glasses (dibaca gleses) berarti kacamata."],
+["“Jam tangan” dalam bahasa Inggris adalah …",["Watch","Wallet","Bottle","Umbrella"],0,"Watch (dibaca woch) berarti jam tangan."],
+["I have a bag. This is ___ bag.",["your","her","my","our"],2,"Subjek I → possessive adjective my."],
+["She is Sarah. ___ name is Sarah.",["His","Her","Its","Their"],1,"Subjek She → her (milik perempuan)."],
+["He has a car. ___ car is blue.",["Her","My","Your","His"],3,"Subjek He → his (milik laki-laki)."],
+["The cat is cleaning ___ fur.",["it","its","her","their"],1,"Subjek It → its (miliknya) untuk hewan/benda."],
+["We are in class 7. This is ___ classroom.",["our","their","my","his"],0,"Subjek We → our (milik kami)."],
+["They have a big house. ___ house is big.",["Our","Her","Their","Its"],2,"Subjek They → their (milik mereka)."],
+["You have a beautiful voice. ___ song is great.",["My","Your","His","Its"],1,"Subjek You → your (milikmu)."],
+["Look at ___ stars way up in the sky!",["this","that","these","those"],3,"Bintang jamak dan jauh → those."],
+["___ is my favorite pencil that I am holding right now.",["This","These","Those","They"],0,"Benda tunggal dan dekat → this."],
+["Can you see ___ bird on the roof over there?",["this","that","these","those"],1,"Burung tunggal dan jauh (over there) → that."]
+];
+const TOP=n=>n<10?"Vocabulary (Benda)":n<17?"Possessive Adjectives":"Demonstratives";
+const DUR=20*60;
+let S={},cur=0,ans=[],dbt=[],left=DUR,tm=null,done=false;
+const $=i=>document.getElementById(i);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const show=id=>{["s-start","s-quiz","s-res"].forEach(x=>$(x).classList.toggle("hide",x!==id));window.scrollTo(0,0)};
+const fmt=t=>String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");
+
+$("mulai").onclick=()=>{
+ S={nama:$("nama").value.trim(),kelas:$("kelas").value.trim(),pd:$("pd").value.trim(),sekolah:$("sekolah").value.trim()};
+ if(!S.nama||!S.kelas||!S.pd||!S.sekolah){$("err").textContent="Lengkapi semua data terlebih dahulu.";return}
+ $("err").textContent="";start();
+};
+function start(){
+ cur=0;ans=Array(Q.length).fill(null);dbt=Array(Q.length).fill(false);left=DUR;done=false;
+ $("who").innerHTML=esc(S.nama)+"<small>"+esc(S.kelas)+" • "+esc(S.sekolah)+"</small>";
+ show("s-quiz");render();tick();
+ clearInterval(tm);tm=setInterval(tick,1000);
+}
+function tick(){
+ $("timer").textContent="⏱ "+fmt(left);$("timer").classList.toggle("low",left<=60);
+ if(left<=0){finish();return}
+ left--;
+}
+function render(){
+ const q=Q[cur];
+ $("qn").textContent="Soal "+(cur+1)+" dari "+Q.length;
+ $("qt").textContent=q[0];
+ $("bar").style.width=((ans.filter(x=>x!==null).length)/Q.length*100)+"%";
+ $("opts").innerHTML=q[1].map((o,i)=>`<button class="opt${ans[cur]===i?" sel":""}" data-i="${i}" type="button"><b>${"ABCD"[i]}</b>${esc(o)}</button>`).join("");
+ document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ans[cur]=+b.dataset.i;render()});
+ $("prev").disabled=cur===0;
+ $("next").disabled=cur===Q.length-1;
+ $("dbt").textContent=dbt[cur]?"✓ Ragu-ragu":"Ragu-ragu";
+ $("nav").innerHTML=Q.map((_,i)=>`<button class="nb${dbt[i]?" d":ans[i]!==null?" a":""}${i===cur?" c":""}" data-i="${i}" type="button" aria-label="Soal ${i+1}">${i+1}</button>`).join("");
+ document.querySelectorAll(".nb").forEach(b=>b.onclick=()=>{cur=+b.dataset.i;render()});
+}
+$("prev").onclick=()=>{if(cur>0){cur--;render()}};
+$("next").onclick=()=>{if(cur<Q.length-1){cur++;render()}};
+$("dbt").onclick=()=>{dbt[cur]=!dbt[cur];render()};
+$("fin").onclick=()=>{
+ const k=ans.filter(x=>x===null).length,d=dbt.filter(Boolean).length;
+ $("ovt").textContent="Akhiri quiz?";
+ $("ovp").textContent=k+" soal belum dijawab"+(d?" dan "+d+" soal masih ragu-ragu":"")+". Jawaban tidak dapat diubah setelah selesai.";
+ $("ov").classList.remove("hide");
+};
+$("no").onclick=()=>$("ov").classList.add("hide");
+$("yes").onclick=()=>{$("ov").classList.add("hide");finish()};
+
+function finish(){
+ if(done)return;done=true;clearInterval(tm);
+ const used=DUR-Math.max(left,0);
+ let b=0,k=0;const tp={};
+ Q.forEach((q,i)=>{const t=TOP(i);tp[t]=tp[t]||[0,0];tp[t][1]++;
+  if(ans[i]===null)k++;else if(ans[i]===q[2]){b++;tp[t][0]++}});
+ const s=Q.length-b-k,nilai=Math.round(b/Q.length*100);
+ const pred=nilai>=85?"Sangat Baik":nilai>=70?"Baik":nilai>=55?"Cukup":"Perlu Latihan Lagi";
+ const tgl=new Date().toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
+ $("sc").style.setProperty("--v",nilai);$("scv").textContent=nilai;
+ $("pred").textContent=pred;$("sb").textContent=b;$("ss").textContent=s;$("sk").textContent=k;
+ const rows=[["Nama",S.nama],["Kelas",S.kelas],["Peserta Didik",S.pd],["Asal Sekolah",S.sekolah]];
+ $("idt").innerHTML=rows.map(r=>`<tr><th>${r[0]}</th><td>${esc(r[1])}</td></tr>`).join("");
+ const tr=Object.keys(tp).map(t=>`<tr><th>${t}</th><td>${tp[t][0]} dari ${tp[t][1]} benar</td></tr>`).join("");
+ $("cert").innerHTML=`<div style="font-size:42px">🏅</div><h2>Sertifikat Hasil Quiz</h2>
+ <p style="margin:2px 0 10px">Quiz</p>
+ <p style="margin:0">Diberikan kepada</p><div class="nm">${esc(S.nama)}</div>
+ <p style="margin:0">dengan nilai akhir</p><div class="f" style="font-size:56px;font-weight:700;color:#e0187f;line-height:1.1">${nilai}</div>
+ <p style="margin:0;font-weight:700">Predikat: ${pred}</p>
+ <table><tr><th>Kelas</th><td>${esc(S.kelas)}</td></tr><tr><th>Peserta Didik</th><td>${esc(S.pd)}</td></tr><tr><th>Asal Sekolah</th><td>${esc(S.sekolah)}</td></tr>
+ <tr><th>Jawaban benar</th><td>${b}</td></tr><tr><th>Jawaban salah</th><td>${s}</td></tr><tr><th>Tidak dijawab</th><td>${k}</td></tr>
+ <tr><th>Waktu pengerjaan</th><td>${fmt(used)} dari ${fmt(DUR)}</td></tr>${tr}</table>
+ <div class="sign">${tgl}<br>Pengembang Quiz<br><b>Eyin Tria Agustina, S.Pd</b></div>`;
+ $("rev").innerHTML=Q.map((q,i)=>{
+  const ok=ans[i]===q[2],a=ans[i]===null?"Tidak dijawab":"ABCD"[ans[i]]+". "+q[1][ans[i]];
+  return `<div class="rv${ok?" ok":""}"><span class="tag">${ok?"Benar":ans[i]===null?"Kosong":"Salah"}</span> <b>${i+1}. ${esc(q[0])}</b>
+  <p>Jawabanmu: ${esc(a)}</p><p>Jawaban benar: <b>${"ABCD"[q[2]]}. ${esc(q[1][q[2]])}</b></p><div class="expl">💡 ${esc(q[3])}</div></div>`}).join("");
+ $("certwrap").classList.add("hide");
+ show("s-res");
+}
+$("showc").onclick=()=>{$("certwrap").classList.remove("hide");$("certwrap").scrollIntoView({behavior:"smooth"})};
+$("print").onclick=()=>window.print();
+$("ulang").onclick=()=>{$("certwrap").classList.add("hide");start()};
+</script>
+</body>
+</html>
